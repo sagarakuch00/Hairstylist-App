@@ -1,0 +1,134 @@
+/* ===============================
+   PAGE
+================================ */
+.page-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #4b2fa3;
+  margin-bottom: 25px;
+}
+
+/* ===============================
+   BATCH CARD
+================================ */
+.batch-card {
+  background: linear-gradient(135deg, #f4edff, #faf7ff);
+  border-radius: 14px;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 22px rgba(80, 40, 160, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* ===============================
+   BATCH HEADER
+================================ */
+.batch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #e9dcff, #f5efff);
+}
+
+.batch-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #5a2fc2;
+}
+
+.batch-date {
+  font-size: 13px;
+  color: #7a68b5;
+}
+
+.toggle-icon {
+  font-size: 26px;
+  font-weight: 700;
+  color: #5a2fc2;
+}
+
+/* ===============================
+   BATCH BODY
+================================ */
+.batch-body {
+  padding: 18px 22px 24px;
+  background: #ffffff;
+}
+
+/* ===============================
+   STUDENT TABLE
+================================ */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-table th {
+  text-align: left;
+  font-size: 13px;
+  color: #6b5ca5;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.student-table td {
+  padding: 12px 0;
+  font-size: 14px;
+  color: #2f2a45;
+  border-top: 1px solid #eee;
+}
+
+/* ===============================
+   STATUS BADGES
+================================ */
+.status {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.booked,
+.status.confirmed {
+  background: #e6fff1;
+  color: #1a9b5a;
+}
+
+.status.pending {
+  background: #fff4db;
+  color: #c08700;
+}
+
+.status.cancelled {
+  background: #ffe4e4;
+  color: #c53030;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .student-table thead {
+    display: none;
+  }
+
+  .student-table tr {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .student-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+  }
+}

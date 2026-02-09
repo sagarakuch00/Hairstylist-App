@@ -1,0 +1,141 @@
+<header class="navbar">
+  <div class="nav-left">
+    <img
+      src="assets/Images/Site-Logo.png"
+      alt="Hairvona Logo"
+      class="logo"
+      routerLink="/"
+    />
+
+    <a class="nav-link desktop-only" routerLink="/">Home</a>
+
+    <a *ngIf="role" class="nav-link desktop-only" (click)="goToDashboard()">
+      Dashboard
+    </a>
+
+    <a
+      *ngIf="role === 'User'"
+      class="nav-link desktop-only"
+      (click)="goToBookBatch()"
+    >
+      Book Batch
+    </a>
+
+    <a
+      *ngIf="role === 'Instructor'"
+      class="nav-link desktop-only"
+      (click)="goToManageBatches()"
+    >
+      Manage Batches
+    </a>
+
+    <a *ngIf="role" class="nav-link desktop-only" (click)="goToViewBookings()">
+      View Bookings
+    </a>
+  </div>
+
+  <!-- 🔍 SEARCH -->
+  <div class="search-wrapper" [class.hide]="hideSearch">
+    <input
+      type="text"
+      placeholder="Search service or instructor..."
+      class="search-input"
+      [(ngModel)]="searchText"
+      (keyup.enter)="onSearch()"
+    />
+    <button class="btn btn-search" (click)="onSearch()">Search</button>
+  </div>
+
+  <!-- DESKTOP RIGHT -->
+  <div class="nav-right desktop-only">
+    <a *ngIf="role" class="nav-link" (click)="goToProfile()">Profile</a>
+
+    <button *ngIf="!role" class="btn btn-login" (click)="onLogin()">
+      Login
+    </button>
+
+    <!-- ✅ UPDATED -->
+    <button *ngIf="role" class="btn btn-login" (click)="confirmLogout()">
+      Logout
+    </button>
+  </div>
+
+  <!-- ☰ Hamburger -->
+  <div class="hamburger mobile-only" (click)="menuOpen = true">☰</div>
+</header>
+
+<!-- 📱 Mobile Menu -->
+<div class="mobile-menu" [class.open]="menuOpen">
+  <div class="menu-header">
+    <span class="menu-title">Menu</span>
+    <button class="menu-close" (click)="menuOpen = false">✕</button>
+  </div>
+
+  <a routerLink="/" (click)="menuOpen = false">Home</a>
+
+  <a *ngIf="role" (click)="goToDashboard(); menuOpen = false">
+    Dashboard
+  </a>
+
+  <a *ngIf="role === 'User'" (click)="goToBookBatch(); menuOpen = false">
+    Book Batch
+  </a>
+
+  <a
+    *ngIf="role === 'Instructor'"
+    (click)="goToManageBatches(); menuOpen = false"
+  >
+    Manage Batches
+  </a>
+
+  <a *ngIf="role" (click)="goToViewBookings(); menuOpen = false">
+    View Bookings
+  </a>
+
+  <a *ngIf="role" (click)="goToProfile(); menuOpen = false">Profile</a>
+  <a *ngIf="!role" (click)="onLogin(); menuOpen = false">Login</a>
+
+  <!-- ✅ UPDATED -->
+  <a *ngIf="role" (click)="confirmLogout(); menuOpen = false">
+    Logout
+  </a>
+</div>
+
+
+<!-- 🔔 Logout Confirmation Modal -->
+<div class="logout-overlay" *ngIf="showLogoutPopup">
+  <div class="logout-modal">
+    <h3>Logout</h3>
+    <p>Do you want to logout?</p>
+
+    <div class="logout-actions">
+      <button class="btn-cancel" (click)="showLogoutPopup = false">
+        Cancel
+      </button>
+      <button class="btn-logout" (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 🌟 Welcome Popup (After Role Selection) -->
+
+<div class="welcome-overlay" *ngIf="showWelcomePopup">
+  <div class="welcome-modal">
+    <h3>Welcome to Hairvona 👋</h3>
+
+    <p *ngIf="role === 'User'">
+      Book your first batch and start your journey today.
+    </p>
+
+    <p *ngIf="role === 'Instructor'">
+      Create your first batch and start earning with Hairvona.
+    </p>
+
+    <button class="welcome-btn" (click)="showWelcomePopup = false">
+      Get Started
+    </button>
+  </div>
+</div>
+

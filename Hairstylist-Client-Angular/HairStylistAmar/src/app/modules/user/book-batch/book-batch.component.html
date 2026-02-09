@@ -1,0 +1,77 @@
+<div class="services-list">
+  <div class="service-row" *ngFor="let service of services">
+
+    <!-- SERVICE CARD -->
+    <div
+      class="service-card"
+      [class.active]="selectedService?.serviceId === service.serviceId"
+      (click)="selectService(service)"
+    >
+      <h3 class="service-title">{{ service.name }}</h3>
+
+      <div
+        class="instructor-info"
+        *ngIf="service.instructor && selectedService?.serviceId === service.serviceId"
+      >
+        <img
+          [src]="getInstructorPhoto(service.instructor)"
+          class="instructor-photo"
+        />
+
+        <div>
+          <p class="instructor-name">{{ service.instructor.name }}</p>
+          <p class="instructor-mobile">📞 {{ service.instructor.contactMobile }}</p>
+          <div class="rating">★ ★ ★ ★ ☆ <span>4.5</span></div>
+        </div>
+      </div>
+
+      <a class="view-link">View Available Batches →</a>
+    </div>
+
+    <!-- BATCHES -->
+    <div class="row-details" *ngIf="selectedService?.serviceId === service.serviceId">
+      <h4 class="batches-title">Batches for {{ service.name }}</h4>
+
+      <div class="batches-row">
+        <div *ngFor="let batch of batches" class="batch-card">
+
+          <strong class="batch-name">{{ batch.batchName }}</strong>
+          <p>Start Date: {{ batch.startDate | date }}</p>
+          <p class="price">Price: ₹{{ batch.price }}</p>
+
+          <!-- BOOK -->
+          <button
+            *ngIf="activeBatchId !== batch.batchId"
+            (click)="openMobileInput(batch.batchId); $event.stopPropagation()"
+          >
+            Book Now
+          </button>
+
+          <!-- MOBILE INPUT -->
+          <div
+            class="mobile-input-box"
+            *ngIf="activeBatchId === batch.batchId"
+            (click)="$event.stopPropagation()"
+          >
+            <input
+              type="tel"
+              maxlength="10"
+              placeholder="Enter mobile number"
+              [(ngModel)]="studentMobile"
+              name="studentMobile"   
+            />
+
+            <button
+              [disabled]="processing || !studentMobile || studentMobile.length !== 10"
+              (click)="confirmBooking(batch.batchId)"
+            >
+              {{ processing ? 'Processing...' : 'Confirm' }}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

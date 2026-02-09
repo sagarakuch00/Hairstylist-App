@@ -1,0 +1,88 @@
+<div class="service-form-container">
+
+  <h2 class="title">
+    {{ isEditMode ? 'Edit Service' : 'Create New Service' }}
+  </h2>
+
+  <form (ngSubmit)="submit()" #form="ngForm">
+
+    
+    <div class="form-group">
+      <label>Service Name *</label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        [(ngModel)]="model.name"
+        required
+        placeholder="Enter service name"
+      />
+    </div>
+
+    
+    <div class="form-group">
+      <label>Description</label>
+      <textarea
+        class="form-control"
+        rows="4"
+        name="description"
+        [(ngModel)]="model.description"
+        placeholder="Describe the service"
+      ></textarea>
+    </div>
+
+    
+    <div class="form-group">
+      <label>Price (₹) *</label>
+      <input
+        type="number"
+        class="form-control"
+        name="price"
+        [(ngModel)]="model.price"
+        required
+        min="1"
+      />
+    </div>
+
+    
+    <div class="actions">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loading || form.invalid"
+      >
+        {{ loading ? 'Saving...' : (isEditMode ? 'Update Service' : 'Create Service') }}
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+    </div>
+
+  </form>
+</div>
+
+
+<div class="popup-overlay" *ngIf="showSuccessPopup">
+  <div class="popup success">
+    <h3>✅ Success</h3>
+    <p>
+      {{ isEditMode ? 'Service updated successfully.' : 'Service created successfully.' }}
+    </p>
+  </div>
+</div>
+
+
+<div class="popup-overlay" *ngIf="showErrorPopup">
+  <div class="popup error">
+    <h3>❌ Error</h3>
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-outline" (click)="closeErrorPopup()">
+      Close
+    </button>
+  </div>
+</div>

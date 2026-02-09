@@ -1,0 +1,46 @@
+<div class="role-container">
+  <div class="role-card">
+
+    <h2 class="title">Choose Your Role</h2>
+    <p class="subtitle">
+      Please select how you want to continue
+    </p>
+
+    
+    <div class="role-buttons" *ngIf="!selectedRole">
+      <button
+        class="role-btn user"
+        (click)="selectRole('User')">
+        I am a Student
+      </button>
+
+      <button
+        class="role-btn instructor"
+        (click)="selectedRole = 'Instructor'">
+        I am an Instructor
+      </button>
+    </div>
+
+    
+    <div class="mobile-box" *ngIf="selectedRole === 'Instructor'">
+      <label>Instructor Mobile Number</label>
+
+      <input
+        type="tel"
+        class="form-control"
+        placeholder="Enter 10-digit mobile number"
+        [(ngModel)]="mobileNumber"
+        maxlength="10"
+        pattern="[0-9]{10}"
+      />
+
+      <button
+        class="btn btn-primary"
+        [disabled]="mobileNumber.length !== 10 || isSubmitting"
+        (click)="selectRole('Instructor')">
+        Continue
+      </button>
+    </div>
+
+  </div>
+</div>

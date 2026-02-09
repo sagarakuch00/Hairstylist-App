@@ -1,0 +1,123 @@
+<div class="page-container">
+  <h2 class="page-title">My Bookings</h2>
+
+  <!-- Loading -->
+  <p *ngIf="loading" class="text-muted">Loading bookings...</p>
+
+  <!-- No bookings -->
+  <p *ngIf="!loading && bookings.length === 0" class="text-muted">
+    You have not booked any batches yet.
+  </p>
+
+  <!-- Bookings Grid -->
+  <div class="row g-4" *ngIf="!loading && bookings.length > 0">
+    <div class="col-md-4" *ngFor="let b of bookings">
+      <div class="card card-custom shadow-sm h-100">
+        <!-- Batch Name -->
+        <h5 class="fw-bold text-primary">
+          {{ b.batch.batchName }}
+        </h5>
+
+        <!-- Service Name -->
+        <p class="text-muted mb-1">
+          <i class="bi bi-briefcase"></i>
+          Service: <strong>{{ b.batch.service?.name }}</strong>
+        </p>
+
+        <!-- Instructor Name -->
+        <p class="text-muted mb-1">
+          <i class="bi bi-person-badge"></i>
+          Instructor: {{ b.batch.instructor?.name }}
+        </p>
+
+        <!-- Instructor Mobile -->
+        <p class="text-muted mb-1">
+          <i class="bi bi-telephone"></i>
+
+          <ng-container
+            *ngIf="
+              b.status === 'Booked' || b.status === 'Confirmed';
+              else masked
+            "
+          >
+            {{ b.batch.instructor?.mobile }}
+          </ng-container>
+
+          <ng-template #masked>
+            {{ maskMobile(b.batch.instructor?.mobile) }}
+          </ng-template>
+        </p>
+
+        <!-- Payment Hint -->
+        <small *ngIf="b.status === 'Pending'" class="text-warning d-block mb-1">
+          Complete payment to view instructor contact
+        </small>
+
+        <!-- Start Date -->
+        <p class="text-muted mb-1">
+          Start Date: {{ b.batch.startDate | date : "mediumDate" }}
+        </p>
+
+        <!-- Price -->
+        <p class="fw-bold fs-5">₹ {{ b.batch.price }}</p>
+
+        <!-- Status Badge -->
+        <span
+          class="badge px-3 py-2"
+          [ngClass]="{
+            'bg-success': b.status === 'Booked' || b.status === 'Confirmed',
+            'bg-warning text-dark': b.status === 'Pending',
+            'bg-danger': b.status === 'Cancelled'
+          }"
+        >
+          {{ b.status }}
+        </span>
+
+        <!-- Actions -->
+        <div class="mt-3 d-flex gap-2">
+          <button
+            *ngIf="b.status === 'Pending'"
+            class="btn btn-sm btn-primary"
+            (click)="goToPayment(b.bookingId)"
+          >
+            Pay Now
+          </button>
+
+          <button
+            *ngIf="b.status === 'Pending'"
+            class="btn btn-sm btn-outline-danger"
+            (click)="openCancelPopup(b.bookingId)"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 🔔 Cancel Booking Popup -->
+<div class="logout-overlay" *ngIf="showCancelPopup">
+  <div class="logout-modal">
+    <h3>Cancel Booking</h3>
+    <p>Are you sure you want to cancel this booking?</p>
+
+    <div class="logout-actions">
+      <button
+        class="btn-cancel"
+        (click)="showCancelPopup = false"
+      >
+        No
+      </button>
+
+      <button
+        class="btn-logout"
+        (click)="confirmCancelBooking()"
+      >
+        Yes, Cancel
+      </button>
+    </div>
+  </div>
+</div>

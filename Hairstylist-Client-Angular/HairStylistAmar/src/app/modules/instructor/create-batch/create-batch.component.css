@@ -1,0 +1,220 @@
+/* ================================
+   CONTAINER
+================================ */
+.batch-container {
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+/* ================================
+   PAGE TITLE
+================================ */
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary-purple);
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+/* ================================
+   FORM CARD
+================================ */
+.batch-form {
+  background: var(--bg-soft);
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ================================
+   FORM GROUP
+================================ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 13.5px;
+  margin-bottom: 6px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+/* ================================
+   INPUTS
+================================ */
+.form-control {
+  border-radius: 10px;
+  padding: 12px 14px; /* ✅ better touch target */
+  font-size: 14px;
+  border: 1px solid #ddd;
+  transition: all 0.25s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 2px rgba(106, 77, 244, 0.15);
+}
+
+/* ================================
+   BUTTON
+================================ */
+.btn-primary-custom {
+  margin-top: 12px;
+  align-self: center;
+
+  background: var(--gradient-primary);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 34px;
+
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-primary-custom:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.btn-primary-custom:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================================
+   TABLET VIEW
+================================ */
+@media (min-width: 1024px) {
+  .batch-container {
+    max-width: 1100px;   /* ✅ takes left + right space */
+    padding: 0 32px;
+  } 
+}
+
+/* ================================
+   MOBILE VIEW
+================================ */
+@media (max-width: 640px) {
+
+  .batch-container {
+    margin: 24px auto;
+    max-width: 100%;
+    padding: 0 14px;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .batch-form {
+    padding: 20px;
+  }
+
+  .btn-primary-custom {
+    width: 100%;        /* ✅ full-width button on mobile */
+    border-radius: 12px;
+  }
+}
+
+/* ================================
+   FORM ROW (2-column)
+================================ */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ================================
+   INPUT WITH ICON
+================================ */
+.input-icon {
+  position: relative;
+}
+
+.input-icon .icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--primary-purple);
+}
+
+.input-icon .form-control {
+  padding-left: 36px;
+}
+
+/* ================================
+   SUCCESS TOAST
+================================ */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup {
+  background: #fff;
+  padding: 24px 30px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.popup.success h3 {
+  color: #2e7d32;
+}
+
+.popup.error h3 {
+  color: #c62828;
+}
+
+.popup p {
+  margin: 12px 0 18px;
+}
+
+.btn-outline {
+  border: 1px solid #ccc;
+  background: transparent;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+/* ================================
+   MOBILE FIXES
+================================ */
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr; /* stack on mobile */
+  }
+
+  .toast-success {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}

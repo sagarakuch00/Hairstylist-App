@@ -1,0 +1,52 @@
+<div class="payment-page" *ngIf="booking">
+
+  <h2 class="page-title">💳 Complete Payment</h2>
+
+  <div class="payment-card">
+    <div class="card-header">
+      <h3>{{ booking.batchName }}</h3>
+      <span class="status pending">{{ booking.status }}</span>
+    </div>
+
+    <div class="card-body">
+      <div class="info-row">
+        <span>Instructor</span>
+        <strong>{{ booking.instructorName }}</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Start Date</span>
+        <strong>{{ booking.startDate | date }}</strong>
+      </div>
+
+      <div class="info-row total">
+        <span>Total Amount</span>
+        <strong>₹{{ booking.amount }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="pay-btn"
+    [disabled]="processing"
+    (click)="payNow()"
+  >
+    Pay ₹{{ booking.amount }}
+  </button>
+</div>
+
+<p *ngIf="!booking" class="loading-text">
+  Loading payment details...
+</p>
+
+<!-- 🔔 Payment Popup -->
+<div class="popup-overlay" *ngIf="showPopup">
+  <div class="popup-modal">
+    <h3 [ngClass]="popupType">{{ popupType === 'success' ? 'Success' : 'Error' }}</h3>
+    <p>{{ popupMessage }}</p>
+
+    <button class="popup-btn" (click)="closePopup()">
+      OK
+    </button>
+  </div>
+</div>

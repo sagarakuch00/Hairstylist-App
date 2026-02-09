@@ -1,0 +1,136 @@
+<div class="profile-page">
+  <h2 class="page-title">My Profile</h2>
+
+ 
+  <p *ngIf="loading" class="text-muted">Loading profile...</p>
+
+  
+  <div *ngIf="!loading && profile" class="profile-card">
+    
+    <div class="profile-header">
+     
+      <div class="photo-box">
+        <img
+          class="profile-avatar"
+          [src]="
+            profile?.photoUrl
+              ? FILE_BASE + profile.photoUrl
+              : 'assets/Images/default-avatar.png'
+          "
+        />
+
+        <label class="upload-btn">
+          📸 Upload photo
+          <input
+            type="file"
+            accept="image/*"
+            hidden
+            (change)="onPhotoSelected($event)"
+          />
+        </label>
+      </div>
+
+      
+      <div class="profile-basic">
+        <h3>{{ profile.fullName }}</h3>
+        <p class="email">{{ profile.email }}</p>
+
+        <span class="status" [class.active]="profile.isActive">
+          {{ profile.isActive ? "Active Instructor" : "Inactive" }}
+        </span>
+      </div>
+
+     
+      <button class="edit-btn" (click)="editMode = !editMode">
+        {{ editMode ? "Cancel" : "Edit Profile" }}
+      </button>
+    </div>
+
+    
+    <div class="profile-body" *ngIf="!editMode">
+      <div class="info-row">
+        <label>Display Name</label>
+        <span>{{ profile.name }}</span>
+      </div>
+
+      <div class="info-row">
+        <label>Specialization</label>
+        <span>{{ profile.specialization }}</span>
+      </div>
+
+      <div class="info-row">
+        <label>Mobile</label>
+        <span>{{ profile.mobile }}</span>
+      </div>
+
+      <div class="info-row full">
+        <label>About Me</label>
+        <p>{{ profile.description || "No description provided." }}</p>
+      </div>
+    </div>
+
+    
+    <form *ngIf="editMode" class="profile-body" (ngSubmit)="saveProfile()">
+      <div class="info-row">
+        <label>Full Name</label>
+        <input
+          type="text"
+          [(ngModel)]="profile.fullName"
+          name="fullName"
+          required
+        />
+      </div>
+
+      <div class="info-row">
+        <label>Display Name</label>
+        <input type="text" [(ngModel)]="profile.name" name="name" />
+      </div>
+
+      <div class="info-row">
+        <label>Specialization</label>
+        <input
+          type="text"
+          [(ngModel)]="profile.specialization"
+          name="specialization"
+        />
+      </div>
+
+      <div class="info-row">
+        <label>Mobile</label>
+        <input
+          type="tel"
+          [(ngModel)]="profile.mobile"
+          name="mobile"
+          maxlength="10"
+          pattern="[0-9]{10}"
+          inputmode="numeric"
+        />
+      </div>
+
+      <div class="info-row full">
+        <label>About Me</label>
+        <textarea
+          rows="4"
+          [(ngModel)]="profile.description"
+          name="description"
+        ></textarea>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="save-btn">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="logout-overlay" *ngIf="showPopup">
+  <div class="logout-modal">
+    <h3>{{ popupType === "success" ? "Success" : "Error" }}</h3>
+    <p>{{ popupMessage }}</p>
+
+    <div class="logout-actions">
+      <button class="btn-logout" (click)="closePopup()">OK</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,388 @@
+/* ===============================
+   PAGE CONTAINER
+================================ */
+.page-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #4b2fa3;
+  margin-bottom: 20px;
+}
+
+.table thead th {
+  background: linear-gradient(135deg, #6f42c1, #b36bff); /* Hairvona purple */
+  color: #ffffff !important; /* 🔥 force visible text */
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: none;
+}
+
+/* ===============================
+   TABLE BASE
+================================ */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(80, 40, 160, 0.08);
+}
+
+.table thead {
+  background: linear-gradient(135deg, #6f42c1, #b36bff);
+}
+
+.table thead th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.table tbody tr {
+  transition: background 0.25s ease;
+}
+
+.table tbody tr:nth-child(even) {
+  background: #faf7ff;
+}
+
+.table tbody tr:hover {
+  background: #f1eaff;
+}
+
+.table tbody td {
+  padding: 14px 16px;
+  font-size: 14.5px;
+  color: #2f2a45;
+}
+
+/* ===============================
+   NUMERIC COLUMNS
+================================ */
+.table td:nth-child(2),
+.table td:nth-child(3) {
+  font-weight: 600;
+}
+
+/* Earnings highlight */
+.table td:nth-child(3) {
+  color: #6a1fbf;
+}
+
+/* ===============================
+   EMPTY / LOADING TEXT
+================================ */
+.text-muted {
+  color: #7b6fa8;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* ===============================
+   RESPONSIVE (MOBILE)
+================================ */
+@media (max-width: 768px) {
+
+  .table {
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody tr {
+    display: block;
+    background: linear-gradient(135deg, #f4edff, #faf7ff);
+    margin-bottom: 14px;
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 6px 18px rgba(80, 40, 160, 0.08);
+  }
+
+  .table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #5a2fc2;
+  }
+}
+.popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px;
+  width: 360px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.popup-card h3 {
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+.popup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: #fff;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+}
+
+.btn-cancel {
+  background: #e5e7eb;
+  color: #111827;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+/* ===============================
+   CLICKABLE BATCH NAME
+================================ */
+.batch-name-link {
+  font-weight: 600;
+  color: #6f42c1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+ 
+}
+
+.batch-name-link:hover {
+  color: #b36bff;
+  text-decoration: none;
+}
+
+.batch-name-link:active {
+  transform: scale(0.97);
+}
+/* 🔔 Overlay */
+.logout-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* 💎 Popup box */
+.logout-modal {
+  background: #ffffff;
+  width: 340px;
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+  animation: popupFade 0.25s ease;
+}
+
+/* 🧾 Title */
+.logout-modal h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #7b2cbf; /* Hairvona purple */
+}
+
+/* 📝 Description */
+.logout-modal p {
+  margin: 14px 0 22px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* 🔘 Buttons container */
+.logout-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ❌ Cancel button */
+.btn-cancel {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f4f4f4;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background: #eaeaea;
+}
+
+/* 🚨 Delete button */
+.btn-logout {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff4d6d, #c77dff);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-logout:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* ✨ Popup animation */
+@keyframes popupFade {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* 🔔 Overlay */
+.logout-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* 💎 Popup box */
+.logout-modal {
+  background: #ffffff;
+  width: 340px;
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+  animation: popupFade 0.25s ease;
+}
+
+/* 🧾 Title */
+.logout-modal h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #7b2cbf; /* Hairvona purple */
+}
+
+/* 📝 Description */
+.logout-modal p {
+  margin: 14px 0 22px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* 🔘 Buttons container */
+.logout-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ❌ Cancel button */
+.btn-cancel {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f4f4f4;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background: #eaeaea;
+}
+
+/* 🚨 Delete button */
+.btn-logout {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff4d6d, #c77dff);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-logout:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* ✨ Popup animation */
+@keyframes popupFade {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

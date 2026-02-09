@@ -1,0 +1,171 @@
+/* ===============================
+   USER DASHBOARD
+================================ */
+
+.dashboard-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px 60px;
+}
+
+/* Welcome */
+.welcome {
+  font-size: 26px;
+  font-weight: 700;
+  color: #6f3cff;
+  margin-bottom: 20px;
+}
+
+/* Loading text */
+.text-muted {
+  color: #777;
+  font-size: 14px;
+}
+
+/* ===============================
+   CARDS (Upcoming / Empty)
+================================ */
+
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px 24px;
+  margin-bottom: 26px;
+  box-shadow: 0 10px 28px rgba(80, 40, 140, 0.12);
+}
+
+/* Highlighted upcoming batch */
+.card.highlight {
+  border-left: 6px solid #8b5cf6;
+  background: linear-gradient(135deg, #f6f2ff, #ffffff);
+}
+
+.card.highlight h3 {
+  margin-bottom: 10px;
+  color: #5b21b6;
+}
+
+/* Empty state */
+.card.empty {
+  text-align: center;
+  background: #faf9ff;
+}
+
+.card.empty p {
+  margin-bottom: 12px;
+  color: #666;
+}
+
+/* Status badge */
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.confirmed {
+  background: rgba(34, 197, 94, 0.15);
+  color: #16a34a;
+}
+
+/* ===============================
+   STATS GRID
+================================ */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #7b5cff, #b38cff);
+  color: #fff;
+  border-radius: 18px;
+  padding: 22px;
+  text-align: center;
+  box-shadow: 0 12px 26px rgba(123, 92, 255, 0.35);
+}
+
+.stat-card h4 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
+
+.stat-card p {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn-primary,
+.btn-secondary {
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: 22px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+/* Primary (Browse Services) */
+.btn-primary {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(139, 92, 246, 0.45);
+}
+
+/* Secondary */
+.btn-secondary {
+  background: #f2ecff;
+  color: #5b21b6;
+}
+
+.btn-secondary:hover {
+  background: #e6dbff;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+  .welcome {
+    font-size: 22px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+}

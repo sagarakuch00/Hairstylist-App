@@ -1,0 +1,158 @@
+<div class="batch-container">
+
+  
+  <h2 class="page-title">
+    {{ batchId ? 'Edit Batch' : 'Create New Batch' }}
+  </h2>
+
+  <form
+    class="batch-form"
+    (ngSubmit)="submitBatch()"
+    #batchForm="ngForm"
+  >
+
+    
+    <div class="form-group">
+      <label>Batch Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="batchName"
+        [(ngModel)]="batchName"
+        required
+        placeholder="Enter batch name"
+      />
+    </div>
+
+    
+    <div class="form-group">
+      <label>Description</label>
+      <textarea
+        class="form-control"
+        rows="3"
+        name="description"
+        [(ngModel)]="description"
+        required
+        placeholder="Brief description of the batch"
+      ></textarea>
+    </div>
+
+    
+    <div class="form-row">
+
+      
+      <div class="form-group">
+        <label>Price (₹)</label>
+        <div class="input-icon">
+          <span class="icon">₹</span>
+          <input
+            type="number"
+            class="form-control"
+            name="price"
+            [(ngModel)]="price"
+            required
+            min="0"
+          />
+        </div>
+      </div>
+
+      
+      <div class="form-group">
+        <label>Total Seats</label>
+        <div class="input-icon">
+          <span class="icon">🎟️</span>
+          <input
+            type="number"
+            class="form-control"
+            name="totalSeats"
+            [(ngModel)]="totalSeats"
+            required
+            min="1"
+          />
+        </div>
+      </div>
+
+    </div>
+
+    
+    <div class="form-group">
+      <label>Start Date</label>
+      <div class="input-icon">
+        <span class="icon">📅</span>
+        <input
+          type="date"
+          class="form-control"
+          name="startDate"
+          [(ngModel)]="startDate"
+          [min]="minStartDate"
+          required
+        />
+      </div>
+    </div>
+
+    
+    <div class="form-group">
+      <label>Service</label>
+      <select
+        class="form-control"
+        name="serviceId"
+        [(ngModel)]="serviceId"
+        required
+      >
+        <option value="">-- Select Service --</option>
+        <option
+          *ngFor="let service of services"
+          [value]="service.serviceId"
+        >
+          {{ service.name }}
+        </option>
+      </select>
+    </div>
+
+    
+    <div class="form-group">
+      <label>Contact Mobile Number</label>
+      <div class="input-icon">
+        <span class="icon">📞</span>
+        <input
+          type="tel"
+          class="form-control"
+          name="mobileNumber"
+          [(ngModel)]="mobileNumber"
+          required
+          pattern="[0-9]{10}"
+          placeholder="Enter 10-digit mobile number"
+        />
+      </div>
+    </div>
+
+    
+    <button
+      class="btn btn-primary-custom"
+      type="submit"
+      [disabled]="batchForm.invalid || isSubmitting"
+    >
+      {{ batchId ? 'Update Batch' : 'Create Batch' }}
+    </button>
+
+  </form>
+</div>
+
+
+<div class="popup-overlay" *ngIf="showSuccessPopup">
+  <div class="popup success">
+    <h3>✅ Batch Created</h3>
+    <p>Your batch has been created successfully.</p>
+  </div>
+</div>
+
+
+<div class="popup-overlay" *ngIf="showErrorPopup">
+  <div class="popup error">
+    <h3>❌ Error</h3>
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-outline" (click)="closeErrorPopup()">
+      Close
+    </button>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="search-results-container">
+
+  
+  <p *ngIf="loading">Searching...</p>
+
+  
+  <p *ngIf="!loading 
+            && services.length === 0 
+            && instructors.length === 0 
+            && batches.length === 0">
+    No results found for "<strong>{{ query }}</strong>"
+  </p>
+
+  
+  <div *ngIf="instructors.length > 0">
+    <h3>Instructors</h3>
+
+    <div class="result-grid">
+      <div
+        class="result-card instructor-card"
+        *ngFor="let instructor of instructors"
+        (click)="goToInstructor(instructor)"
+      >
+        <h4>{{ instructor.name }}</h4>
+        <p>{{ instructor.specialization }}</p>
+      </div>
+    </div>
+  </div>
+
+  
+  <div *ngIf="services.length > 0">
+    <h3>Services</h3>
+
+    <div class="result-grid">
+      <div
+        class="result-card service-card"
+        *ngFor="let service of services"
+        (click)="goToService(service)"
+      >
+        <h4>{{ service.name }}</h4>
+      </div>
+    </div>
+  </div>
+
+  
+  <div *ngIf="batches.length > 0">
+    <h3>Batches</h3>
+
+    <div class="result-grid">
+      <div class="result-card" *ngFor="let batch of batches">
+        <h4>{{ batch.batchName }}</h4>
+        <p>Start: {{ batch.startDate | date }}</p>
+        <p>₹{{ batch.price }}</p>
+
+        <button (click)="onBook(batch)">
+          Book Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="popup-overlay" *ngIf="showLoginPopup">
+  <div class="popup-modal">
+    <h3>Login Required</h3>
+    <p>Please login first to book a batch.</p>
+
+    <button class="popup-btn" (click)="goToLogin()">
+      Login
+    </button>
+  </div>
+</div>

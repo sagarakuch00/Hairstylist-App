@@ -1,0 +1,113 @@
+/* ===============================
+   🌙 HAIRVONA FOOTER
+================================ */
+.hairvona-footer {
+  background: linear-gradient(135deg, #2a1f45, #3b2466, #2a1f45);
+  color: #eae6ff;
+  padding: 60px 20px 25px;
+  margin-top: 80px;
+  font-family: inherit;
+}
+
+/* MAIN GRID */
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+}
+
+/* BRAND */
+.brand-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #9f6bff;
+  margin-bottom: 14px;
+}
+
+.brand-desc {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #d9d2ff;
+  margin-bottom: 10px;
+}
+
+/* SKILL TAGS */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.skill-tags span {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #fff;
+}
+
+/* LINKS */
+.footer-links h4,
+.footer-contact h4 {
+  font-size: 17px;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.footer-links a {
+  display: block;
+  color: #d9d2ff;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 14.5px;
+}
+
+.footer-links a:hover {
+  color: #ff8acb;
+}
+
+/* CONTACT */
+.footer-contact p {
+  margin-bottom: 8px;
+  font-size: 14.5px;
+  color: #d9d2ff;
+}
+
+/* BOTTOM BAR */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+  color: #d9d2ff;
+}
+
+.policy-links a {
+  color: #d9d2ff;
+  text-decoration: none;
+  margin: 0 6px;
+}
+
+.policy-links a:hover {
+  color: #ff8acb;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}

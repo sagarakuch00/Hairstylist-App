@@ -1,0 +1,84 @@
+<div class="page-container">
+  <h2 class="page-title">My Batches</h2>
+
+  
+  <p *ngIf="loading" class="text-muted">Loading batches...</p>
+
+  
+  <p *ngIf="!loading && batches.length === 0" class="text-muted">
+    No batches found.
+  </p>
+
+  
+  <table *ngIf="!loading && batches.length > 0" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Batch Name</th>
+        <th>Students</th>
+        <th>Total Earnings</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let b of batches">
+        <td data-label="Batch Name">
+          <span
+            class="batch-name-link"
+            (click)="openBatchPopup(b)"
+            title="Click to manage batch"
+          >
+            {{ b.batchName }}
+          </span>
+        </td>
+
+        <td data-label="Students">
+          {{ b.studentsEnrolled }}
+        </td>
+
+        <td data-label="Total Earnings">
+          ₹ {{ b.totalEarnings }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="popup-backdrop" *ngIf="selectedBatch">
+  <div class="popup-card">
+    <h3>{{ selectedBatch.batchName }}</h3>
+
+    <div class="popup-actions">
+      <button class="btn-edit" (click)="editBatch()">
+        ✏️ Edit Batch
+      </button>
+
+   
+      <button class="btn-delete" (click)="confirmDelete()">
+        🗑️ Delete Batch
+      </button>
+
+      <button class="btn-cancel" (click)="closePopup()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="logout-overlay" *ngIf="showDeletePopup">
+  <div class="logout-modal">
+    <h3>Delete Batch</h3>
+    <p>Are you sure you want to delete this batch?</p>
+
+    <div class="logout-actions">
+      <button class="btn-cancel" (click)="showDeletePopup = false">
+        Cancel
+      </button>
+
+      <button class="btn-logout" (click)="deleteBatch()">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

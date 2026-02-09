@@ -1,0 +1,256 @@
+/* ===============================
+   PAGE LAYOUT
+================================ */
+.page-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 20px 60px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2a1f45;
+  margin-bottom: 25px;
+}
+
+/* ===============================
+   EMPTY & LOADING STATES
+================================ */
+.text-muted {
+  color: #7a7199;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+/* ===============================
+   BOOKING CARD
+================================ */
+.card-custom {
+  border-radius: 16px;
+  border: none;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(80, 40, 140, 0.12);
+  transition: all 0.25s ease;
+  height: 100%;
+}
+
+.card-custom:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(80, 40, 140, 0.18);
+}
+
+/* Title */
+.card-custom h5 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2a1f45;
+  margin-bottom: 10px;
+}
+
+/* Text rows */
+.card-custom p {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* Price */
+.card-custom .fw-bold {
+  font-size: 17px;
+  color: #6f3cff;
+  margin-top: 6px;
+}
+
+/* ===============================
+   STATUS BADGES
+================================ */
+.badge {
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.bg-success {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.bg-warning {
+  background: linear-gradient(135deg, #facc15, #f59e0b);
+}
+
+.bg-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+/* ===============================
+   ACTION BUTTONS – LARGE
+================================ */
+.btn {
+  width: 100%;
+  padding: 12px 18px;           /* ⬅ Bigger height */
+  font-size: 15px;              /* ⬅ Bigger text */
+  font-weight: 600;
+  border-radius: 26px;          /* ⬅ Softer, modern */
+  transition: all 0.25s ease;
+}
+
+/* Space between buttons */
+.mt-3.d-flex {
+  gap: 12px;
+}
+
+/* Pay Now */
+.btn-primary {
+  background: linear-gradient(135deg, #7b5cff, #b38cff);
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(123, 92, 255, 0.45);
+}
+
+/* Cancel */
+.btn-outline-danger {
+  border: 2px solid #ef4444;
+  color: #ef4444;
+  background: transparent;
+}
+
+.btn-outline-danger:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* ===============================
+   DESKTOP TWEAK (optional)
+================================ */
+@media (min-width: 992px) {
+  .btn {
+    font-size: 16px;
+    padding: 14px 22px;
+  }
+}
+
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 24px;
+  }
+
+  .card-custom {
+    padding: 16px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .d-flex {
+    flex-direction: column;
+  }
+}
+
+
+/* 🔔 Overlay background */
+.logout-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* 💎 Popup container */
+.logout-modal {
+  background: #ffffff;
+  width: 340px;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+  animation: popupFadeIn 0.25s ease;
+}
+
+/* 🧾 Title */
+.logout-modal h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #7b2cbf; /* Hairvona Purple */
+}
+
+/* 📝 Message */
+.logout-modal p {
+  margin: 14px 0 22px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* 🔘 Action buttons */
+.logout-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ❌ Cancel button */
+.btn-cancel {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f4f4f4;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background: #eaeaea;
+}
+
+/* 🚨 Confirm button */
+.btn-logout {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #ff4d6d, #c77dff);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-logout:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* ✨ Popup animation */
+@keyframes popupFadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

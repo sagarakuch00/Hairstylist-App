@@ -1,0 +1,60 @@
+
+
+
+  <div class="action-section" *ngIf="!loading">
+
+    
+    <div class="card action-card">
+      <h4>Create Batch</h4>
+      <p class="action-desc">
+        Create a new batch and start enrolling students.
+      </p>
+      <button
+        class="btn btn-primary"
+        routerLink="/instructor/create-batch"
+      >
+        Create Batch
+      </button>
+    </div>
+
+    
+    <div class="card action-card">
+      <h4>Create Service</h4>
+      <p class="action-desc">
+        Add a new service to offer masterclasses.
+      </p>
+      <button
+        class="btn btn-secondary"
+        routerLink="/instructor/create-service"
+      >
+        Create Service
+      </button>
+    </div>
+
+  </div>
+
+  <div class="dashboard-container">
+
+  <h2 class="page-title">Instructor Dashboard</h2>
+
+  
+  <div *ngIf="loading" class="text-muted">
+    Loading dashboard...
+  </div>
+
+  
+  <div class="summary-cards" *ngIf="!loading">
+
+    <div class="card summary-card">
+      <h4>Total Students</h4>
+      <p class="count">{{ summary.totalStudents }}</p>
+    </div>
+
+    <div class="card summary-card">
+      <h4>Total Earnings</h4>
+      <p class="count">₹ {{ summary.totalEarnings }}</p>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,58 @@
+<div class="page-container">
+  <h2 class="page-title">Student Bookings</h2>
+
+  <p *ngIf="loading" class="text-muted">Loading bookings...</p>
+
+  <p *ngIf="!loading && batches.length === 0" class="text-muted">
+    No bookings found.
+  </p>
+
+  
+  <div *ngFor="let batch of batches" class="batch-card">
+    
+    <div class="batch-header" (click)="batch.expanded = !batch.expanded">
+      <div>
+        <h3>{{ batch.batchName }}</h3>
+        <span class="batch-date">
+          Starts on {{ batch.startDate | date : "mediumDate" }}
+        </span>
+      </div>
+
+      <span class="toggle-icon">
+        {{ batch.expanded ? "−" : "+" }}
+      </span>
+    </div>
+
+    
+    <div class="batch-body" *ngIf="batch.expanded">
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Email</th>
+             <th>Mobile</th>
+            <th>Booking Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let b of batch.bookings">
+            <td>{{ b.student.fullName }}</td>
+            <td>{{ b.student.email }}</td>
+
+            
+            <td>{{ b.mobileNumber }}</td>
+
+            <td>{{ b.bookingDate | date : "mediumDate" }}</td>
+            <td>
+              <span class="status" [ngClass]="b.status.toLowerCase()">
+                {{ b.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
